@@ -5,13 +5,13 @@ from logger import log_state
 pygame.init()
 
 def main():
-    version = pygame.version.ver
-    print(f"Starting Asteroids with pygame version: {version}")
-    print(f"Screen width: {constants.SCREEN_WIDTH}")
-    print(f"Screen height: {constants.SCREEN_HEIGHT}")
 
     screen = pygame.display.set_mode((constants.SCREEN_WIDTH, constants.SCREEN_HEIGHT));
 
+    #FPS settings
+    clock = pygame.time.Clock()
+    dt = 0
+    
     #game loop
     while True:
         log_state()
@@ -23,6 +23,11 @@ def main():
 
         #fill the screen canvas with black as background colour
         screen.fill("black")
+        
+        #Tick the clock to buzz for 60 fps
+        delta_time_since_last_tick = clock.tick(60)
+        dt = delta_time_since_last_tick / 1000
+
 
         pygame.display.flip()
 
